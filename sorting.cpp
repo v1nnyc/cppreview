@@ -17,7 +17,7 @@ static void decideSize(){
 static int pickRandom(){
     std::random_device rd; // obtain a random number from hardware
     std::mt19937 eng(rd()); // seed the generator
-    std::uniform_int_distribution<> distr(0, 9); // define the range
+    std::uniform_int_distribution<> distr(-1000, 1000); // define the range
 
     return distr(eng); // generate numbers
 }
@@ -49,8 +49,25 @@ static void insertionSort(){
     }
 }
 
+static void bubbleSort(){
+    for(int i = arraySize; i >= 1; i--){
+        for(int j = 1; j <= i-1; j++){
+            if( *(arrayUsed + j) > *(arrayUsed + (j+1))){
+                int k = *(arrayUsed + j);
+                int l = *(arrayUsed + (j+1));
+                *(arrayUsed + j) = l;
+                *(arrayUsed + (j+1)) = k;
+            }
+        }
+    }
+}
+
 int main(){
     decideSize();
+    fillArray();
+    printArray();
+    bubbleSort();
+    printArray();
     fillArray();
     printArray();
     insertionSort();
