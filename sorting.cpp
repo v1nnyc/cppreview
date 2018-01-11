@@ -98,14 +98,18 @@ void heapify(int n, int i)
 static void heapSort(int n)
 {
     // Build heap (rearrange array)
-    for (int i = n / 2 - 1; i >= 0; i--)
+    for (int i = n / 2 -1; i >= 0; i--)
         heapify(n, i);
  
     // One by one extract an element from heap
-    for (int i=n-1; i>=0; i--)
+    for (int i=n; i>=0; i--)
     {
         // Move current root to end
-        swap(*arrayUsed, *(arrayUsed + i));
+        int k = *(arrayUsed);
+        int l = *(arrayUsed + i);
+        *(arrayUsed) = l;
+        *(arrayUsed + i) = k;
+
  
         // call max heapify on the reduced heap
         heapify( i, 0);
