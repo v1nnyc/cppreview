@@ -52,7 +52,7 @@ static void insertionSort(){
 
 static void bubbleSort(){
     for(int i = arraySize; i >= 1; i--){
-        for(int j = 1; j <= i-1; j++){
+        for(int j = 0; j <= i; j++){
             if( *(arrayUsed + j) > *(arrayUsed + (j+1))){
                 int k = *(arrayUsed + j);
                 int l = *(arrayUsed + (j+1));
@@ -123,7 +123,7 @@ int main(){
     
     cout<<" 1. insertion sort\n";
     cout<<" 2. bubble sort\n ";
-    cout<<" 3. heap sort\n ";
+    cout<<"3. heap sort\n ";
     cout<<"Selection: ";
    
     cin>> input;
