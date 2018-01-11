@@ -5,6 +5,7 @@
 using namespace std;
 
 int overallScore;
+int secretNumber;
 
 static int decideRand(){
 srand(time(NULL));
@@ -12,15 +13,15 @@ srand(time(NULL));
     return rand() % 10 + 1;
 }
 
-static void printCorrect(int* number, int score){
-    cout<<"You guessed the right number! It was " << *number << "\n";
-	cout<<"Your overall score was: " << score << "\n";
+static void printCorrect(){
+    cout<<"You guessed the right number! It was " << secretNumber << "\n";
+	cout<<"Your overall score was: " << overallScore << "\n";
 cout<<"Play again?\n";
 }
 
 static void playGame(){
 	overallScore = 0;
-	int secret = decideRand();
+	secretNumber = decideRand();
 	int guess;
 	int* value = &guess;
 	do{
@@ -28,20 +29,19 @@ static void playGame(){
    		cin>> guess;
    		cin.ignore();
     		cout<<"You entered: "<< guess << "\n";
-    		if(*value < secret){
+    		if(*value < secretNumber){
     	   	 cout<<"Your guess is too low!!!"<<"\n";
     		}
-    		else if(*value > secret){
+    		else if(*value > secretNumber){
     		    cout<<"Your guess is too high!!!"<<"\n";
     		}
 	overallScore++;
-    	} while (secret != guess);
-	printCorrect(value, overallScore);
+    	} while (secretNumber != guess);
+	printCorrect();
 }
 
 static void gameSelection(){
 int input;
-  do{
 cout<<" 1. Play game\n";
   cout<<" 2. Exit\n ";
   cout<<"Selection: ";
@@ -56,7 +56,7 @@ cout<<" 1. Play game\n";
   default:            // Note the colon, not a semicolon
     cout<<"Error, bad input, quitting\n";
     break;
-  }} while ( input != 2);
+  }
 }
 
 int main(){
